@@ -1,0 +1,24 @@
+services:
+  caddy:
+    image: caddy:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./data/caddy_data:/data
+      - ./data/caddy_config:/config
+  kuma:
+    image: louislam/uptime-kuma:2
+    restart: unless-stopped
+    volumes:
+      - ./data/kuma:/app/data
+
+  ntfy:
+    image: binwiederhier/ntfy
+    restart: unless-stopped
+    command: serve
+    volumes:
+      - ./data/ntfy/cache:/var/cache/ntfy
+      - ./data/ntfy/etc:/etc/ntfy

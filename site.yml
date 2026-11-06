@@ -1,0 +1,9 @@
+- hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: Installer Docker
+      ansible.builtin.apt: { name: [docker.io, docker-compose-v2], state: present }
+    
+    - name: Démarrer la pile
+      community.docker.docker_compose_v2: { project_src: /srv/plateforme }

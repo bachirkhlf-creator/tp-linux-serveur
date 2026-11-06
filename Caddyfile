@@ -1,0 +1,7 @@
+status.bachir.lab-cesi.fr {
+    reverse_proxy kuma:3001
+}
+
+notif.bachir.lab-cesi.fr {
+    reverse_proxy ntfy:80
+}
